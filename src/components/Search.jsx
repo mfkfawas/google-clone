@@ -1,0 +1,35 @@
+import React, { useEffect, useState } from 'react';
+import { useDebounce } from 'use-debounce';
+
+import Links from './Links'
+import { useResultContext } from '../contexts/ResultContextProvider';
+
+const Search = () => {
+    const { setSearchTerm } = useResultContext()
+    const[ text, setText ] = useState('elon musk')
+    const [ debouncedValue ] = useDebounce(text, 500)
+
+    useEffect(() => {
+        if(debouncedValue) setSearchTerm(debouncedValue)
+    }, [debouncedValue])
+
+    return (
+        <div className="realtive sm:ml-48 md:ml-72 sm:-mt-10 mt-3">
+            <input
+            value={text}
+            type="text"
+            className="sm:w-96 w-80 h-10 dark:bg-gray-200 border rounded-full shadow-sm outline-none p-6 text-black hover:shadow-lg"
+            placeholder="🔎 Search Gooogle or type URL"
+            onChange={(e) => setText(e.target.value)}
+             />
+             {text !== '' && (
+            <button type="button" className="absolute top-6 right-90 text-2xl text-gray-500 " onClick={() => setText('')}>
+            x
+            </button>
+            )}
+            <Links />
+        </div>
+    )
+}
+
+export default Search
