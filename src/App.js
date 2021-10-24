@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 import Header from './components/Header'
 import Routes from './components/Routes'
 import Footer from './components/Footer'
+require('dotenv').config()
 
 const App = () => {
     const [darkTheme, setDarkTheme] = useState(false)    
