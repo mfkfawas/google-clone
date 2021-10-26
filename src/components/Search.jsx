@@ -7,7 +7,7 @@ import { useResultContext } from '../contexts/ResultContextProvider';
 const Search = () => {
     const { setSearchTerm } = useResultContext()
     const[ text, setText ] = useState('elon musk')
-    const [ debouncedValue ] = useDebounce(text, 500)
+    const [ debouncedValue ] = useDebounce(text, 300)
 
     useEffect(() => {
         if(debouncedValue) setSearchTerm(debouncedValue)
@@ -23,7 +23,7 @@ const Search = () => {
             onChange={(e) => setText(e.target.value)}
              />
              {text !== '' && (
-            <button type="button" className="absolute top-6 right-90 text-2xl text-gray-500 " onClick={() => setText('')}>
+            <button type="button" className="absolute sm:top-6 sm:right-90 top-6 right-90 text-2xl text-gray-500 " onClick={() => setText('')}>
             x
             </button>
             )}
